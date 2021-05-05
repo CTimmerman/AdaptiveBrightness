@@ -14,7 +14,7 @@ pip install -r requirements.txt
 ```
 .venv\Scripts\activate
 python adaptive_brightness.py
-exit
+deactivate
 ```
 
 ## GNU
@@ -30,5 +30,5 @@ pip install -r requirements.txt
 ```
 .venv/bin/activate
 python adaptive_brightness.py
-exit
+deactivate
 ```

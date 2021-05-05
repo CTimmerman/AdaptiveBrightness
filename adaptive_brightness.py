@@ -3,6 +3,7 @@ Changes display brightness to match webcam brightness.
 2021-05-05 v1.0 by Cees Timmerman
 """
 
+import sys
 import time
 
 import cv2
@@ -24,7 +25,8 @@ def get_brightness(img):
 
 
 def main(camera=0, debug=False):
-    if debug: cv2.namedWindow("preview")
+    if debug:
+        cv2.namedWindow("preview")
 
     for i in range(camera, 10):
         vc = cv2.VideoCapture(i)
@@ -34,23 +36,31 @@ def main(camera=0, debug=False):
 
     original_brightness = sbc.get_brightness(display=0)
     brightness = original_brightness
-    while True:
-        rval, frame = vc.read()
-        if not rval: break
+    try:
+        while True:
+            rval, frame = vc.read()
+            if not rval:
+                break
 
-        if debug: cv2.imshow("preview", frame)
-        key = cv2.waitKey(20)
-        if key == 27:  # exit on ESC
-            break
+            if debug:
+                cv2.imshow("preview", frame)
+            key = cv2.waitKey(20)
+            if key == 27:  # exit on ESC
+                break
 
-        # Change brightness to match webcam brightness.
-        brightness = int(100 * get_brightness(frame))
-        sbc.fade_brightness(brightness, display=0)
-        time.sleep(1)
+            # Change brightness to match webcam brightness.
+            brightness = int(100 * get_brightness(frame))
+            sbc.fade_brightness(brightness, display=0)
+            time.sleep(1)
+    except KeyboardInterrupt:
+        pass
 
+    sbc.set_brightness(original_brightness)
     vc.release()
-    if debug: cv2.destroyWindow("preview")
+    if debug:
+        cv2.destroyWindow("preview")
 
 
 if __name__ == "__main__":
-    main(0, False)
+    main(int(sys.argv[1]) if len(sys.argv) > 1 else 0, "debug" in sys.argv)
+
