@@ -23,13 +23,14 @@ def get_brightness(img):
         return np.average(img)/255
 
 
-def main(debug=False):
+def main(camera=0, debug=False):
     if debug: cv2.namedWindow("preview")
-    vc = cv2.VideoCapture(1)
-    print(vc)
 
-    if not vc.isOpened():
-        print(f"Can't open cam! {vc}")
+    for i in range(camera, 10):
+        vc = cv2.VideoCapture(i)
+        if vc.isOpened():
+            print(f"Using camera #{i} {vc}")
+            break
 
     original_brightness = sbc.get_brightness(display=0)
     brightness = original_brightness
@@ -52,4 +53,4 @@ def main(debug=False):
 
 
 if __name__ == "__main__":
-    main()
+    main(0, False)
