@@ -22,6 +22,8 @@ python adaptive_brightness.py [device id] [debug]
 Device id default is `-1` to `10`.
 Adding `debug` shows the frames.
 
+Ctrl+C in the shell to exit.
+
 To exit the virtual environment, use:
 ```
 deactivate
