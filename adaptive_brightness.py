@@ -21,7 +21,7 @@ def get_brightness(img):
         return (np.average(norm(img, axis=2)) / np.sqrt(3)) / 255
     else:
         # Grayscale
-        return np.average(img)/255
+        return np.average(img) / 255
 
 
 def main(camera=-1, display=0, debug=False):
@@ -32,8 +32,7 @@ def main(camera=-1, display=0, debug=False):
         vc = cv2.VideoCapture(i)
         if vc.isOpened():
             print(f"Using camera {i} {vc}")
-            vc.set(cv2.CAP_PROP_FOURCC,
-                   cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
+            vc.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc("M", "J", "P", "G"))
             vc.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
             vc.set(cv2.CAP_PROP_FRAME_WIDTH, 240)
             vc.set(cv2.CAP_PROP_FPS, 1)
