@@ -1,34 +1,28 @@
 # Adaptive Brightness
 Changes display brightness to match webcam brightness.
 
-## Windows
+## Installation
 
-### Install
 ```
 python -m venv .venv
-.venv\Scripts\activate
+```
+
+If Bash: `source .venv/bin/activate`
+
+If Windows: `.venv\Scripts\activate`
+
+```
 pip install -r requirements.txt
 ```
 
-### Run
+## Usage
 ```
-.venv\Scripts\activate
-python adaptive_brightness.py
-deactivate
+python adaptive_brightness.py [device id] [debug]
 ```
+Device id default is `-1` to `10`.
+Adding `debug` shows the frames.
 
-## GNU
-
-### Install
+To exit the virtual environment, use:
 ```
-python -m venv .venv
-.venv/bin/activate
-pip install -r requirements.txt
-```
-
-### Run
-```
-.venv/bin/activate
-python adaptive_brightness.py
 deactivate
 ```
