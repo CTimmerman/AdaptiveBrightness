@@ -69,9 +69,9 @@ if __name__ == "__main__":
     display = 0
     debug = False
     try:
+        debug = "debug" in sys.argv
         camera = int(sys.arv[1])
         display = int(sys.argv[2])
-        debug = "debug" in sys.argv
     except:
         pass
     main(camera, display, debug)
