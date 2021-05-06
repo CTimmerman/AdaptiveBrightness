@@ -38,7 +38,12 @@ def main(camera=-1, display=0, debug=False):
         except Exception as ex:
             print(ex)
 
-    vc = cv2.VideoCapture(camera)
+    if camera < 0:
+        for camera in range(10):
+            vc = cv2.VideoCapture(camera)
+            if vc.isOpened():
+                break
+
     if not vc.isOpened():
         print(f"Can't open camera {camera}, {vc}")
         return
