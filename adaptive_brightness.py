@@ -64,14 +64,15 @@ def main(camera=-1, display=0, debug=False):
                 continue
             print(f"Prop {i}, {cv2_prop_name(i)}: {vc.get(i)}")
 
-        rval, frame = vc.read()
-        if rval:
-            cv2.imwrite("debug.jpg", frame)
-
     vc.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*"MJPG"))
     vc.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
     vc.set(cv2.CAP_PROP_FRAME_WIDTH, 240)
     vc.set(cv2.CAP_PROP_FPS, 1)
+
+    if debug:
+        rval, frame = vc.read()
+        if rval:
+            cv2.imwrite("debug.jpg", frame)
 
     original_brightness = sbc.get_brightness(display)
     brightness = original_brightness
