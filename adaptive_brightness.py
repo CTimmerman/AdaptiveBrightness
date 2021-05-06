@@ -45,6 +45,7 @@ def main(camera=-1, display=0, debug=False):
     print(f"Using camera {camera}, {vc.getBackendName()}, {vc}")
 
     if debug:
+
         def cv2_prop_name(v):
             d = vars(cv2)
             return [k for k in d if d[k] == v and k.startswith("CAP_PROP_")]
@@ -68,7 +69,7 @@ def main(camera=-1, display=0, debug=False):
             rval, frame = vc.read()
             if not rval:
                 break
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            frame = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
             if debug:
                 try:
@@ -90,6 +91,7 @@ def main(camera=-1, display=0, debug=False):
             cv2.destroyWindow("preview")
         except:
             pass
+
 
 if __name__ == "__main__":
     camera = -1
